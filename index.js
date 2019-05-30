@@ -25,12 +25,12 @@ async function updateAPI(req, res, next) {
 }
 
 async function updateWebhook(req, res, next) {
-  console.log('Updating webhook')
-  const cmd =
-    'sudo pm2 stop webhook & sudo npm install & sudo pm2 start index.js --name webhook'
-  promisifyCMD(cmd).then(result => {
-    console.log('Updated webhook')
-  })
+  console.log('Update webhook')
+  // const cmd =
+  //   'sudo pm2 stop webhook & sudo npm install & sudo pm2 start index.js --name webhook'
+  // promisifyCMD(cmd).then(result => {
+  //   console.log('Updated webhook')
+  // })
   res.status(200).send('OK')
 }
 
