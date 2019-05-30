@@ -34,6 +34,7 @@ app.use(jsonParser)
 app.use(urlencodedParser)
 
 // webhook trigger
+app.post('/api', updateAPI)
 app.post('/webhook', updateWebhook)
 
 // Start server
