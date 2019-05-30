@@ -23,12 +23,18 @@ async function updateAPI(req, res, next) {
   res.status(200).send('OK')
 }
 
+async function updateWebhook(req, res, next) {
+  var content = req.body
+  console.log('body=>', content)
+  res.status(200).send('OK')
+}
+
 // Condiguration
 app.use(jsonParser)
 app.use(urlencodedParser)
 
 // webhook trigger
-app.get('/api', updateAPI)
+app.post('/webhook', updateWebhook)
 
 // Start server
 app.listen(PORT)
