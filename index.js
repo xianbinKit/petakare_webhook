@@ -28,7 +28,7 @@ app.use(jsonParser)
 app.use(urlencodedParser)
 
 // webhook trigger
-app.use('/api', updateAPI)
+app.get('/api', updateAPI)
 
 // Start server
 app.listen(PORT)
