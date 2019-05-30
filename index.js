@@ -20,7 +20,9 @@ function promisifyCMD(cmd) {
 async function updateAPI(req, res, next) {
   const cmd =
     'sudo pm2 stop api & cd ../api & sudo npm install & sudo pm2 start index.js --name api'
-  console.log('updated api')
+  promisifyCMD(cmd).then(result => {
+    console.log('updated api')
+  })
   res.status(200).send('OK')
 }
 
