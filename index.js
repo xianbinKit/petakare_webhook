@@ -4,9 +4,9 @@ const bodyParser = require('body-parser')
 const PORT = 6474 // 需要打开AWS EC2对应端口
 const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const exec = require('child_process').exec
 
 function promisifyCMD(cmd) {
-  const exec = require('child_process').exec
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
       if (error) {
@@ -20,12 +20,15 @@ function promisifyCMD(cmd) {
 async function updateAPI(req, res, next) {
   var content = req.body
   console.log('body=>', content)
+  console.log('updated api')
   res.status(200).send('OK')
 }
 
 async function updateWebhook(req, res, next) {
-  var content = req.body
-  console.log('body=>', content)
+  const cmd =
+    'pm2 stop webhook & npm install & pm2 start index.js --name webhook'
+  promisifyCMD(cmd)
+  console.log('Updated webhook')
   res.status(200).send('OK')
 }
 
