@@ -19,16 +19,17 @@ function promisifyCMD(cmd) {
 
 async function updateAPI(req, res, next) {
   var content = req.body
-  console.log('body=>', content)
   console.log('updated api')
   res.status(200).send('OK')
 }
 
 async function updateWebhook(req, res, next) {
+  console.log('Updating webhook')
   const cmd =
     'pm2 stop webhook & npm install & pm2 start index.js --name webhook'
-  promisifyCMD(cmd)
-  console.log('Updated webhook')
+  promisifyCMD(cmd).then(result => {
+    console.log('Updated webhook')
+  })
   res.status(200).send('OK')
 }
 
